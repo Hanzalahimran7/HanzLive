@@ -1,14 +1,18 @@
 import CssBaseline from '@mui/material/CssBaseline';
-import { ThemeProvider, createTheme, PaletteMode, Box } from '@mui/material';
+import {
+  ThemeProvider,
+  createTheme,
+  PaletteMode,
+  Box,
+  useMediaQuery,
+} from '@mui/material';
 import { useState } from 'react';
 import ThemeModeToggle from './Coponents/ThemeModeToggle';
 
 function App() {
-  const getCurrentTheme = () =>
-    window.matchMedia('(prefers-color-scheme: dark)').matches;
-
+  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
   const [themeMode, setThemeMode] = useState<PaletteMode>(
-    getCurrentTheme() ? 'dark' : 'light'
+    prefersDarkMode ? 'dark' : 'light'
   );
 
   const theme = createTheme({
