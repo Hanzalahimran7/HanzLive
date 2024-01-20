@@ -1,16 +1,16 @@
 import CssBaseline from '@mui/material/CssBaseline';
-import {
-  ThemeProvider,
-  createTheme,
-  PaletteMode,
-  Switch,
-  Typography,
-  Box,
-} from '@mui/material';
+import { ThemeProvider, createTheme, PaletteMode, Box } from '@mui/material';
 import { useState } from 'react';
+import ThemeModeToggle from './Coponents/ThemeModeToggle';
 
 function App() {
-  const [themeMode, setThemeMode] = useState<PaletteMode>('light');
+  const getCurrentTheme = () =>
+    window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+  const [themeMode, setThemeMode] = useState<PaletteMode>(
+    getCurrentTheme() ? 'dark' : 'light'
+  );
+
   const theme = createTheme({
     palette: {
       mode: themeMode,
@@ -20,21 +20,9 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <div className="flex justify-center ">
-        <Box className="flex flex-col justify-center items-center">
-          <Typography variant="h4" component="h2">
-            Toggle {themeMode === 'light' ? 'Dark' : 'Light'} Mode
-          </Typography>
-          <Switch
-            aria-label="themeToggle"
-            defaultChecked
-            size="small"
-            onChange={() =>
-              setThemeMode(themeMode === 'light' ? 'dark' : 'light')
-            }
-          />
-        </Box>
-      </div>
+      <Box className="flex flex-row justify-center items-center">
+        <ThemeModeToggle mode={themeMode} setMode={setThemeMode} />
+      </Box>
     </ThemeProvider>
   );
 }
