@@ -3,7 +3,6 @@ import {
   ThemeProvider,
   createTheme,
   PaletteMode,
-  Box,
   useMediaQuery,
 } from '@mui/material';
 import { useEffect, useState } from 'react';
