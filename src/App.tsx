@@ -6,7 +6,7 @@ import {
   Box,
   useMediaQuery,
 } from '@mui/material';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ThemeModeToggle from './Coponents/ThemeModeToggle';
 
 function App() {
@@ -14,6 +14,10 @@ function App() {
   const [themeMode, setThemeMode] = useState<PaletteMode>(
     prefersDarkMode ? 'dark' : 'light'
   );
+
+  useEffect(() => {
+    setThemeMode(prefersDarkMode ? 'dark' : 'light');
+  }, [prefersDarkMode]);
 
   const theme = createTheme({
     palette: {
@@ -24,9 +28,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Box className="flex flex-row justify-center items-center">
-        <ThemeModeToggle mode={themeMode} setMode={setThemeMode} />
-      </Box>
+      <ThemeModeToggle mode={themeMode} setMode={setThemeMode} />
     </ThemeProvider>
   );
 }
