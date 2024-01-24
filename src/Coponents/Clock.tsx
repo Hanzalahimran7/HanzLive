@@ -16,8 +16,6 @@ const Clock: React.FC<ClockProps> = ({ width }) => {
   const [hour, setHour] = useState<number>(
     date.getHours() >= 12 ? date.getHours() - 12 : date.getHours()
   );
-  //   const theme = useTheme();
-  //   const mode = theme.palette.mode;
   const [min, setMinutes] = useState<number>(date.getMinutes());
   const [sec, setSeconds] = useState<number>(date.getSeconds());
 
@@ -26,7 +24,6 @@ const Clock: React.FC<ClockProps> = ({ width }) => {
     theme.palette.mode === 'dark'
       ? theme.palette.grey[900]
       : theme.palette.grey[200];
-  console.log(bgColor);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -67,15 +64,6 @@ const Clock: React.FC<ClockProps> = ({ width }) => {
           <InnerCircle width={0.8 * width} />
         </Box>
         <img
-          className="absolute w-[35%] left-[46%] top-1/4"
-          src={minuteHand}
-          style={{
-            transform: `rotate(${(min * 6 + 309) % 360}deg)`,
-            transformOrigin: '12.7% 86.3%',
-          }}
-          alt="Minute-hand"
-        />
-        <img
           className="absolute w-[35%] left-[47%] top-[48%]"
           style={{
             transform: `rotate(${(sec * 6 + 240) % 360}deg)`,
@@ -83,6 +71,15 @@ const Clock: React.FC<ClockProps> = ({ width }) => {
           }}
           src={secondHand}
           alt="Second-hand"
+        />
+        <img
+          className="absolute w-[35%] left-[46%] top-1/4"
+          src={minuteHand}
+          style={{
+            transform: `rotate(${(min * 6 + 309) % 360}deg)`,
+            transformOrigin: '12.7% 86.3%',
+          }}
+          alt="Minute-hand"
         />
         <img
           className="absolute w-[25%] left-[30%] top-[31.8%]"
