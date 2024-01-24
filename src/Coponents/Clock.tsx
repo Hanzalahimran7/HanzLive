@@ -73,7 +73,10 @@ const Clock = () => {
         <Box className="absolute w-full">
           <OuterCircle width={clockWidth} />
         </Box>
-        <Box className="absolute w-[80%] m-[10%]">
+        <Box
+          className="absolute w-[80%] m-[10%]"
+          sx={{ transform: 'rotate(270deg)', transformOrigin: '50%' }}
+        >
           <InnerCircle width={0.8 * clockWidth} />
         </Box>
         <img
