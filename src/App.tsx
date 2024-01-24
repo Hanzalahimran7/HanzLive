@@ -16,23 +16,6 @@ function App() {
     prefersDarkMode ? 'dark' : 'light'
   );
 
-  const [clockWidth, setClockWidth] = useState(() => calculateClockWidth());
-
-  function calculateClockWidth() {
-    const screenWidth = window.innerWidth;
-    return (screenWidth * 50) / 100;
-  }
-
-  useEffect(() => {
-    const handleResize = () => {
-      setClockWidth(calculateClockWidth());
-    };
-    window.addEventListener('resize', handleResize);
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
-
   useEffect(() => {
     setThemeMode(prefersDarkMode ? 'dark' : 'light');
   }, [prefersDarkMode]);
@@ -48,7 +31,7 @@ function App() {
       <CssBaseline />
       <ThemeModeToggle mode={themeMode} setMode={setThemeMode} />
       <Box className="flex justify-center m-10">
-        <Clock width={clockWidth} />
+        <Clock />
       </Box>
     </ThemeProvider>
   );
