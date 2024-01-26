@@ -4,11 +4,9 @@ import {
   createTheme,
   PaletteMode,
   useMediaQuery,
-  Box,
 } from '@mui/material';
 import { useEffect, useState } from 'react';
-import ThemeModeToggle from './Coponents/ThemeModeToggle';
-import Clock from './Coponents/Clock';
+import Home from './Coponents/Home';
 
 function App() {
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
@@ -29,10 +27,11 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <ThemeModeToggle mode={themeMode} setMode={setThemeMode} />
+      <Home />
+      {/* <ThemeModeToggle mode={themeMode} setMode={setThemeMode} />
       <Box className="flex justify-center m-10">
         <Clock />
-      </Box>
+      </Box> */}
     </ThemeProvider>
   );
 }
