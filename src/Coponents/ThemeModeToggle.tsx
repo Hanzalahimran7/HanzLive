@@ -1,25 +1,22 @@
-import { Box, PaletteMode, Switch } from '@mui/material';
+import { Box, Switch } from '@mui/material';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import LightModeIcon from '@mui/icons-material/LightMode';
-import React from 'react';
+import { useContext } from 'react';
+import { ThemeContext } from './ThemeContext';
 
-interface ThemeModeProps {
-  mode: PaletteMode;
-  setMode: (mode: PaletteMode) => void;
-}
-
-const ThemeModeToggle: React.FC<ThemeModeProps> = ({ mode, setMode }) => {
+const ThemeModeToggle = () => {
+  const { themeMode, setThemeMode } = useContext(ThemeContext);
   return (
     <Box className="flex flex-row justify-center items-center">
-      <LightModeIcon />
+      <LightModeIcon color="primary" />
       <Switch
         aria-label="themeToggle"
         size="small"
-        onChange={() => setMode(mode === 'light' ? 'dark' : 'light')}
+        onChange={() => setThemeMode(themeMode === 'light' ? 'dark' : 'light')}
         color="default"
-        checked={mode === 'light' ? false : true}
+        checked={themeMode === 'light' ? false : true}
       />
-      <DarkModeIcon />
+      <DarkModeIcon color="primary" />
     </Box>
   );
 };
